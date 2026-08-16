@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Agent Floor — running an agent workforce, with the governance showing</title>
+<title>Agent Floor (simulation) — running an agent workforce, with the governance showing</title>
 <meta name="description" content="A watchable agent workforce with charters, an autonomy ladder, approval gates and an append-only log. You are the overseer. Two agents stop themselves." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0c10'/%3E%3Crect x='5' y='7' width='22' height='3' rx='1.5' fill='%2354d6a0'/%3E%3Crect x='5' y='14' width='16' height='3' rx='1.5' fill='%23f0b849'/%3E%3Crect x='5' y='21' width='10' height='3' rx='1.5' fill='%236aa3e8'/%3E%3C/svg%3E" />
 <meta property="og:title" content="Agent Floor — an agent workforce with the governance showing" />
@@ -25,10 +25,19 @@
   .shell { max-width:1180px; margin:0 auto; }
 
   header { margin-bottom:18px; }
+  .htop { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   h1 { font-size:18px; font-weight:600; letter-spacing:-.015em; }
   .sub { color:var(--dim); font-size:13px; margin-top:3px; }
   .synthetic { display:inline-block; margin-top:9px; font-size:11px; color:var(--faint);
     border:1px solid var(--line); border-radius:999px; padding:3px 9px; }
+
+  /* Nothing here is live. The gate moment reads as a real approval request, so the
+     label has to travel with it — header alone was not enough. */
+  .sim { font:600 10.5px/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--escalate); border:1px solid var(--escalate);
+    border-radius:4px; padding:4px 7px; white-space:nowrap; }
+  .sim.solid { background:var(--escalate); color:#231103; border-color:var(--escalate); }
+  .simnote { color:var(--faint); font-size:11.5px; }
 
   .grid { display:grid; grid-template-columns:288px 1fr 250px; gap:16px; align-items:start; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; }
@@ -134,7 +143,11 @@
 <div class="shell">
 
 <header>
-  <h1>Agent Floor</h1>
+  <div class="htop">
+    <h1>Agent Floor</h1>
+    <span class="sim solid">Simulation</span>
+    <span class="simnote">Scripted replay. No live model, no real company, no real approvals.</span>
+  </div>
   <div class="sub">An agent workforce with the governance showing. You are the overseer.</div>
   <div class="synthetic" id="synthetic">loading…</div>
 </header>
@@ -189,9 +202,15 @@
 
 <div class="scrim" id="scrim">
   <div class="gate">
-    <div class="gtag">Human gate</div>
+    <div class="gtag" style="display:flex;align-items:center;gap:9px">
+      <span>Human gate</span>
+      <span class="sim">Simulation</span>
+    </div>
     <h3 id="gtitle"></h3>
     <div class="why" id="gwhy"></div>
+    <div class="simnote" style="margin-top:11px">
+      Nothing is sent either way. Your choice only steers the scripted replay.
+    </div>
     <div class="btns">
       <button class="primary" id="gyes">Approve</button>
       <button id="gno">Deny</button>
