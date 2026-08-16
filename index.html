@@ -133,6 +133,14 @@
   .foot { margin-top:26px; color:var(--faint); font-size:12px; line-height:1.6; max-width:760px; }
   .foot b { color:var(--dim); font-weight:500; }
 
+  /* Shared links land people here directly, so every page needs a way back out. */
+  .backlink { margin-top:32px; padding-top:15px; border-top:1px solid var(--line);
+    display:flex; gap:15px; align-items:center; flex-wrap:wrap; font-size:12.5px; }
+  .backlink a { color:var(--dim); text-decoration:none; }
+  .backlink a:hover { color:var(--ink); }
+  .backlink a.home { color:var(--l2); }
+  .backlink .sep { color:var(--l3); }
+
   @media (max-width:1000px) {
     .grid { grid-template-columns:1fr; }
     .floor { min-height:auto; }
@@ -197,6 +205,13 @@
   agent, an autonomy level earned rather than assigned, a human gate on anything that leaves the
   building, and a log that records who actually pressed send.
 </p>
+
+<nav class="backlink">
+  <a class="home" href="/">← SageKey · Brett Anderson</a>
+  <span class="sep">·</span>
+  <a href="/codebreaker/">Codebreaker</a>
+  <a href="/market-arena/">Market Arena</a>
+</nav>
 
 </div>
 
